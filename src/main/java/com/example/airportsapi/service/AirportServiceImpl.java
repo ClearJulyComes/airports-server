@@ -6,13 +6,16 @@ import com.example.airportsapi.model.AirportResource;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @AllArgsConstructor
 public class AirportServiceImpl implements AirportService {
-    private AirportRepository airportRepository;
+    private final AirportRepository airportRepository;
 
     @Override
     public AirportResource getAirport(RequestAirportDto request) {
-        return null;
+        var airport = airportRepository.findAirport(request.getId());
+        return new AirportResource(airport, request.getRequestId(), request.getRequestTimeStamp(), UUID.randomUUID().toString());
     }
 }
