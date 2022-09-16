@@ -1,13 +1,14 @@
 package com.example.airportsapi.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class AirportResource {
-    int id;
-    String data;
-    long requestId;
+    Airport airport;
+    String requestId;
     long requestTimeStamp;
-    long responseId;
+    String responseId;
     long responseTimeStamp;
 }
