@@ -2,13 +2,15 @@ package com.example.airportsapi.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 @Data
 @AllArgsConstructor
+@RequiredArgsConstructor
 public class AirportResource {
-    Airport airport;
-    String requestId;
-    long requestTimeStamp;
-    String responseId;
+    final Airport airport;
+    final String requestId;
+    final long requestTimeStamp;
+    final String responseId;
     long responseTimeStamp;
 }
