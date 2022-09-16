@@ -5,9 +5,11 @@ import com.example.airportsapi.model.AirportResource;
 import com.example.airportsapi.service.AirportService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.time.Instant;
 
 @RestController
 @AllArgsConstructor
@@ -17,7 +19,9 @@ public class AirportController {
     private final AirportService airportService;
 
     @GetMapping(AIRPORT)
-    public ResponseEntity<AirportResource> getAirport(@RequestBody RequestAirportDto request) {
-        return ResponseEntity.ok().body(airportService.getAirport(request));
+    public ResponseEntity<AirportResource> getAirport(@Validated RequestAirportDto request) {
+        var airport = airportService.getAirport(request);
+        airport.setResponseTimeStamp(Instant.now().toEpochMilli());
+        return ResponseEntity.ok().body(airport);
     }
 }
