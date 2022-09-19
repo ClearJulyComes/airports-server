@@ -6,5 +6,5 @@ import org.springframework.data.mongodb.repository.Query;
 
 public interface AirportRepository extends MongoRepository<Airport, String> {
     @Query("{id: '?0'}")
-    Airport findAirport(int id);
+    Airport findAirportById(int id);
 }

@@ -15,7 +15,7 @@ public class AirportServiceImpl implements AirportService {
 
     @Override
     public AirportResource getAirport(RequestAirportDto request) {
-        var airport = airportRepository.findAirport(request.getId());
+        var airport = airportRepository.findAirportById(request.getId());
         return new AirportResource(airport, request.getRequestId(), request.getRequestTimeStamp(), UUID.randomUUID().toString());
     }
 }
