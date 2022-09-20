@@ -1,5 +1,4 @@
 from pymongo import MongoClient
-from csv import reader
 
 
 def upload_data():
@@ -15,9 +14,11 @@ def upload_data():
 
 def read_and_parse(collection):
     with open('airports.dat', 'r') as read_obj:
-        csv_reader = reader(read_obj)
-        for row in csv_reader:
-            airport = {"id": row[0], "data": row}
+        while True:
+            line = read_obj.readline()
+            if not line:
+                break
+            airport = {"_id": int(line[:line.find(',')]), "data": line}
             collection.insert_one(airport)
 
 

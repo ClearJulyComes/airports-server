@@ -21,10 +21,11 @@ public class AirportController {
     private final AirportService airportService;
 
     @GetMapping(AIRPORT)
-    public ResponseEntity<AirportResource> getAirport(@Validated RequestAirportDto request) {
-        log.info(request.toString());
+    public ResponseEntity<AirportResource> getAirport(@Validated RequestAirportDto request) throws InterruptedException {
+        log.info("Request to get airport by id. " + request.toString());
         var airport = airportService.getAirport(request);
         airport.setResponseTimeStamp(Instant.now().toEpochMilli());
+        log.info("Response with airport. " + airport.toString());
         return ResponseEntity.ok().body(airport);
     }
 }

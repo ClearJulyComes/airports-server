@@ -15,8 +15,6 @@ import java.util.UUID;
 public class AirportServiceImpl implements AirportService {
     private final AirportRepository airportRepository;
 
-    {log.info("Start");}
-
     @Override
     public AirportResource getAirport(RequestAirportDto request) {
         var airport = airportRepository.findAirportById(request.getId());
